@@ -1,0 +1,14 @@
+dist/
+build/
+.idea/
+.eggs/
+__pycache__
+bddf_helper.egg-info/
+.cache/
+*.pyc
+.tox/
+.pytest_cache/
+.*.sw*
+*.json
+*.csv
+.ipynb_checkpoints
