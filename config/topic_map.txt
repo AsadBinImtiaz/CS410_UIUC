@@ -1,0 +1,150 @@
+friendly-staff/good-food/good-service/recommend;Good food & service
+reservation/seat/table/waiter;Reservation & Environment 
+clean/inside/nice/outside;Ambiance
+hotel/night/room/stay;Hotel Stay
+chef/fish/sashimi/sushi;Sea Food
+awesome/definitely/highly-recommend/thank;Good dining experience
+absolutely/definitely/delicious/highly-recommend;Tasty food
+atmosphere/definitely/great/highly-recommend;Atmosphere & Food
+fast/friendly-staff/super/yummy;Staff & Food
+attentive/friendly/helpful/staff;Staff & Management
+hour/line/minute/wait;Service Delays
+bill/charge/dollar/spend;Value & Pricing
+dish/noodle/rice/soup;Soups / Noodles
+family/friend/night/recommend;Dining Experience
+shrimp/street/taco/tuesday;Food & Environment in general
+caesar/dress/pasta/salad;Salads / Pasta
+couple/second-time/time/visit;Couple dining experience
+atmosphere/favorite/husband/love;Atmosphere
+attentive/bring/check/server;Staff & service
+flavor/meat/sauce/wing;Food veriety & flavors
+bland/flavor/not-good/taste;Food flavors & Taste
+burrito/chip/fish/salsa;Maxican Style Food
+good/mexican-food/not-great/town;Mexican Food / Location
+decent/much/not-bad/pretty;Decent Food experience
+dinner/lunch/special/today;Food in general
+clean/fast/fresh/tasty;Atmosphere & Food
+because/reason/review/star;Review & Rating
+crust/good-pizza/pizza/slice;Pizzas
+great-atmosphere/great-food/great-service/highly-recommend;Overall great dining experience
+bartender/drink/night/refill;Bar & Drinks
+bacon/cheese/grill/mac-n;Fast Food
+buffet/dessert/line/vegas;Buffet & Deserts
+absolutely/amazing/highly-recommend/not-wait;Good Service
+bacon/burger/good-burger/shake;Burgers and fast food
+beer/selection/wine/wing;Beer & Wine
+chicken/rice/waffle/wing;Chicken Meals / Waffles
+atmosphere/enjoy/experience/meal;Dining area atmosphere
+dinner/excellent/highly-recommend/wife;Family dining experience
+portion/price/quality/reasonable;Food Portions & Quality
+bread/pulled-pork/sandwich/turkey;Sandwitches / Meat
+leave/manager/people/tell;Management & Service
+feel/like/more/much;Food in gereral
+atmosphere/food/good-service/quality;Ambiance & Food quality
+cook/dinner/medium-rare/steak;Stake Style Food
+lobster/roll/salmon/shrimp;Seafood in general
+area/drive/location/visit;Location & Area
+customer/great-customer/service/slow;Service 
+appetizer/happy-hour/special/wing;happy-Hour / Specials
+item/menu/offer/option;Menu & Offerings
+breakfast/brunch/coffee/pancake;Breakfast
+bread/meat/sandwich/turkey;Sandwitches & Meat
+beef/noodle/rice/soup;Soups & Noodles
+chef/fish/sashimi/sushi;Seafood / Sushi
+customer/fast/great-customer/service;Customer Service
+chinese-food/good/mexican-food/not-good;Chinese / Maxican Food
+fast/friendly-staff/super/yummy;Staff & Food
+attentive/friendly/helpful/staff;Reception & Staff
+amazing-food/delicious-food/great-service/thank;Good Food, Good service
+minute/table/wait/worth;Wait & Service
+dinner/night/steak/wine;Steak & Wine 
+cool/much/pretty/tasty;Good Food
+absolutely/amazing/definitely/not-wait;Dining Experience
+appetizer/definitely/excellent/wife;Food & Service
+clean/fresh/taste/tasty;Environment & Taste
+attentive/experience/server/thank;Staff & Management
+absolute/favorite/mexican/mexican-food;Mexican Food
+atmosphere/bartender/coffee/drink;Bar / Breakfast Experience
+clean/inside/nice/owner;Ambiance & Decor
+feel/like/more/taste;Food in general
+dish/meat/sauce/serve;Food & Service
+area/find/room/stay;Dining area & Location
+absolutely/definitely/delicious/husband;Dining experience
+because/reason/review/star;Review & Star Rating
+crust/good-pizza/pizza/slice;Pizzeria dining
+friendly-staff/good-food/good-price/good-service;Overall good dining & service
+bacon/burger/good-burger/shake;burgers / Shakes
+beer/selection/wine/wing;Food veriety
+breakfast/burrito/coffee/pancake;Breakfast & Service
+family/spot/town/year;Family Dining
+chicken/rice/waffle/wing;Chicken / Wings / Deserts
+chip/fish/salsa/taco;Mexican/British food
+buffet/dinner/lunch/special;Buffet Service & Specials 
+buffet/strip/trip/vegas;Vegas Buffet Experience
+buffet/dollar/include/person;Price & Value 
+couple/time/today/week;Couple Date
+atmosphere/enjoy/experience/meal;Atmosphere & Food
+amazing-food/excellent-service/fantastic/highly-recommend;Amazing Food & Service
+portion/price/quality/reasonable;Food Quantity & Quality
+caesar/dress/potato/salad;Salads & dressings
+atmosphere/definitely/friendly-service/great;Atmosphere
+location/not-wait/phoenix/visit;Location & Area
+atmosphere/food/good-service/quality;Atmosphere & Food
+bring/friend/meet/recommend;Dining Experience
+awesome/bartender/definitely/not-wait;Staff & Service
+atmosphere/friendly-staff/great-atmosphere/great-food;Atmosphere & Staff
+cheese/grill/mac-n/steak;Stakes / Mac-n-Cheese
+lobster/roll/salmon/shrimp;Sea Food / Rolls
+appetizer/happy-hour/special/wing;Happy Hour / Specials
+item/menu/offer/option;Menu & options
+atmosphere/husband/love/yummy;Food & Environment
+birthday/friend/group/night;Birthday / Group Dining
+buffet/line/lunch/vegas;Buffet
+arrive/later/minute/ready;Reception & Wait
+crust/delivery/pizza/slice;Pizza delivery
+bland/much/nice/pretty;Food Misc
+close/delivery/half/hour;Delivery & Delays
+friendly/member/rude/staff;Management & Staff
+dish/flavor/meat/sauce;Food flavor & taste
+decide/feel/hungry/leave;Food in general
+experience/not-bad/not-good/not-recommend;Dining Experience
+bill/bring/check/waiter;Waiter & Bill
+bill/charge/dollar/spend;Bill & Money
+bread/lunch/sandwich/turkey;Sandwitches
+bill/bring/check/waitress;Waiter/Waitress/Bill
+group/line/people/work;People & Location
+change/item/lunch/menu;Lunch / Food
+feel/like/more/smell;Smell
+check/hotel/room/stay;Hotel Stay
+because/not-want/reason/star;Review & Stars
+drive/employee/location/love;Location & Area
+breast/chicken/piece/waffle;Chicken / Waffle
+high/not-worth/price/quality;Value for money
+cold/food/poisoning/quality;Food Quality
+beef/bowl/noodle/soup;Soups & Noodles
+bartender/beer/happy-hour/selection;Beer/Drink Selection
+manager/phone/speak/tell;management in general
+cook/medium/medium-rare/steak;Stakes
+average/good/mediocre/not-taste;Average dining Experience
+customer/employee/owner/rude;Bad Staff Behavior
+bacon/cheese/grill/mac-n;Grilled Food
+horrible/service/slow/terrible;Bad dining experience
+bread/cold/plate/serve;Bread / Food quality
+dinner/husband/meal/night;Dinner Experience
+chair/dirty/hostess/table;Dining Area
+chip/fish/salsa/taco;Finger food
+bland/horrible/money/taste;Bad taste / Value
+bill/bring/check/server;Bill & Service
+bartender/drink/happy-hour/refill;Drinks in general
+money/not-waste/time/waste;Pricing & Value (Negative)
+love/more/review/year;Review & Rating
+buffalo/cold/sauce/wing;Buffalo Wings / Sauces
+bacon/breakfast/coffee/pancake;Breakfast / Coffee
+hostess/party/reservation/seat;Service & Reservation
+line/long/not-worth/wait;Wait & Delay
+bacon/burger/cook/patty;Burgers & Fast food
+fish/roll/sashimi/sushi;Fish & Sushi
+bring/glass/refill/water;Drinks
+caesar/dress/lettuce/salad;Salads
+bean/burrito/rice/shrimp;Food in general
+away/door/stand/walk;Dining Experience
