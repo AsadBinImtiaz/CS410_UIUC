@@ -238,9 +238,9 @@ def split_doc(doc):
             sent_words.append('.')
         sentis.append(" ".join(sent_words).replace(" .","."))
             
-    topic_text = str(" ".join(topics).replace("\n"," "))
+    topic_text = str(" ".join(topics).replace("\n"," ")).replace("_","-")
     
-    sentiment_text = str(" ".join((value for value in sentis if value != '.'))).replace("\n"," ")
+    sentiment_text = str(" ".join((value for value in sentis if value != '.'))).replace("\n"," ").replace("_","-")
     
     return [topic_text, sentiment_text]
 
@@ -349,7 +349,7 @@ def process_text_str(review_text,restaurant_name=''):
     return cleansed_text[0]
     
 if __name__ == "__main__":
-    printTS("Initialization started")
+    
     try:
         
         cleansed_text = process_text_str('Good food experience. I was with my family. Food was amazing. Service was slow.')

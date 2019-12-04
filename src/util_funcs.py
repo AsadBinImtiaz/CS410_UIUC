@@ -252,6 +252,8 @@ if __name__ == "__main__":
         logOutput("------------------START--------------------")            
     except Exception as SomeError:
         printTS (f"Warning: logger initialization falied: {str(SomeError)}")
+    
+    printTS ("Initializated")
 
 '''        
     data = S3_csv_to_df('cleaned_reviews_il.csv')['text']

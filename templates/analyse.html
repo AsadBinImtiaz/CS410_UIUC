@@ -1,0 +1,52 @@
+{% extends "main.html" %}
+{% block body %}
+<html>
+	<head>
+		<title>Yummy Opinion Advisor </title>
+	</head>
+    <body>
+		<div id="maindiv">
+			<div id="topdiv">
+				<nav id="navbar">
+				</nav>
+			</div >
+			<div id="middiv">
+				<br></br>
+				<ul>
+					<div >
+						<form action = "http://localhost:5000/Yummy" method = "post">
+							<table id="maintab" >
+								<tr><h3>row1</h3></tr>
+								<tr>
+									<input type="text" placeholder="Search" name ="txtsearch">
+								</tr>
+								<tr>
+									<button "submit" value = "submit">Search</button></tr>
+							</table>
+						<br></br>
+						<br></br>
+						</form>		
+					</div>
+				</ul>
+			</div>
+			<div id="botdov">
+				<table id="resultstab">
+					<tr>
+						<p id="busnamep">{{business_name|safe}}</p>
+					</tr>
+					
+					<tr>
+						<p id="reviewp">{{review_text|safe}}</p>
+					</tr>
+					<tr>
+						<td> Business Stars:<p id="busstarsp">{{bus_stars|safe}}</p>
+						<td> Review Stars:<p id="revstarsp">{{rev_stars|safe}}</p>
+					</tr>
+					<tr></tr>
+					<tr></tr>
+				</table>
+			</div>
+		</div>
+	</body>
+		
+{% endblock %}

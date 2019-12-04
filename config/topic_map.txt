@@ -16,7 +16,7 @@ shrimp/street/taco/tuesday;Food & Environment in general
 caesar/dress/pasta/salad;Salads / Pasta
 couple/second-time/time/visit;Couple dining experience
 atmosphere/favorite/husband/love;Atmosphere
-attentive/bring/check/server;Staff & service
+attentive/bring/check/server;Staff & Service
 flavor/meat/sauce/wing;Food veriety & flavors
 bland/flavor/not-good/taste;Food flavors & Taste
 burrito/chip/fish/salsa;Maxican Style Food
