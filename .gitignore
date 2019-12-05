@@ -12,3 +12,5 @@ bddf_helper.egg-info/
 *.json
 *.csv
 .ipynb_checkpoints
+.log
+*.log

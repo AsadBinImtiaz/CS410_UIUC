@@ -1,52 +1,111 @@
 {% extends "main.html" %}
 {% block body %}
-<html>
-	<head>
-		<title>Yummy Opinion Advisor </title>
-	</head>
-    <body>
-		<div id="maindiv">
-			<div id="topdiv">
-				<nav id="navbar">
-				</nav>
-			</div >
-			<div id="middiv">
-				<br></br>
-				<ul>
-					<div >
-						<form action = "http://localhost:5000/Yummy" method = "post">
-							<table id="maintab" >
-								<tr><h3>row1</h3></tr>
-								<tr>
-									<input type="text" placeholder="Search" name ="txtsearch">
-								</tr>
-								<tr>
-									<button "submit" value = "submit">Search</button></tr>
-							</table>
-						<br></br>
-						<br></br>
-						</form>		
-					</div>
-				</ul>
-			</div>
-			<div id="botdov">
-				<table id="resultstab">
-					<tr>
-						<p id="busnamep">{{business_name|safe}}</p>
-					</tr>
-					
-					<tr>
-						<p id="reviewp">{{review_text|safe}}</p>
-					</tr>
-					<tr>
-						<td> Business Stars:<p id="busstarsp">{{bus_stars|safe}}</p>
-						<td> Review Stars:<p id="revstarsp">{{rev_stars|safe}}</p>
-					</tr>
-					<tr></tr>
-					<tr></tr>
+			<div id="contentdiv" >
+				<br/>
+				<table>
+					<td style="width:50px"> </td>
+					<td>
+						<table>
+							<tr>
+								<p>Choose a review:</p>
+							</tr>
+							<tr>
+								<form action="http://localhost:5000/analyse" method = "post">
+									<label class="w3-center">State: </label>
+									<select id="state" class="w3-button" style="border: double; width: 100px">
+										<option>{{state|safe}}</option/>
+									</select>
+									&nbsp;&nbsp;
+									<label class="w3-center"> City: </label>
+									<select id="city" class="w3-button" style="border: double; width: 200px">
+										<option>{{city|safe}}</option/>
+									</select>
+									&nbsp;&nbsp;
+									<label class="w3-center"> Restaurant: </label>
+									<select id="rest" class="w3-button" style="border: double; width: 200px">
+										<option>{{rest|safe}}</option/>
+									</select>
+									&nbsp;&nbsp;
+									<label class="w3-center"> Review ID: </label>
+									<select id="revw" class="w3-button" style="border: double; width: 200px">
+										<option>{{revw|safe}}</option/>
+									</select>
+									&nbsp;&nbsp;
+									<button type="submit" class="w3-button w3-black" value = "submit">Analyze</button>
+									<input type="hidden" placeholder="inpts" id="inpts" name ="inpts" ></input> 
+								</form>
+							</tr>
+						</table>
+						</br>
+						<div style="position:relative; margin-left:100px"><p>{{result|safe}}</p><div>
+					</td>
+					<td style="width:50px"> </td>
 				</table>
+				<br/>
+				<script src="{{ url_for('static', filename='jquery-2.1.1.min.js') }}"></script>
+				<script>
+					"use strict";
+
+					var states = {{ states|tojson }};
+
+					var form = $('form');
+					var state = $('select#state');
+					var city = $('select#city');
+					var rest = $('select#rest');
+					var revw = $('select#revw');
+					var inpt = $('input#inpts');
+					
+					for (var key in states) {
+						state.append($('<option/>', {'value': key, 'text': key}));
+					}
+
+					state.change(function(ev) {
+						city.empty();
+						rest.empty();
+						revw.empty();
+						city.append($('<option/>'));
+
+						var citys = states[state.val()];
+
+						for (var key in citys) {
+							city.append($('<option/>', {'value': key, 'text': key}));
+						}
+					});
+					
+					city.change(function(ev) {
+						rest.empty();
+						revw.empty();
+						rest.append($('<option/>'));
+
+						var citys = states[state.val()];
+						var rests = citys[city.val()];
+
+						for (var key in rests) {
+							rest.append($('<option/>', {'value': key, 'text': key}));
+						}
+					});
+
+					rest.change(function(ev) {
+						revw.empty();
+						revw.append($('<option/>'));
+
+						var citys = states[state.val()];
+						var rests = citys[city.val()];
+						var revws = rests[rest.val()];
+
+						for (var i in revws) {
+							revw.append($('<option/>', {'value': revws[i], 'text': revws[i]}));
+						}
+					});
+					
+					revw.change(function(ev) {
+						$(inpts).val($("select#revw option:selected").text()+";"+$("select#rest option:selected").text()+";"+$("select#city option:selected").text()+";"+$("select#state option:selected").text());
+					});
+					
+					form.submit(function(ev) {
+						$(inpts).val($("select#revw option:selected").text()+";"+$("select#rest option:selected").text()+";"+$("select#city option:selected").text()+";"+$("select#state option:selected").text());
+					});
+				</script>
 			</div>
-		</div>
-	</body>
 		
 {% endblock %}
