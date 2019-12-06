@@ -13,6 +13,8 @@ import os
 import itertools
 from datetime import datetime
 from pathlib import Path
+import pickle as pickle
+import warnings
 
 # Spacy
 import spacy
@@ -54,6 +56,7 @@ dir_config  = 'config/'
 dir_pickles = 'pickles'
 
 logEnabled = 0
+dir_home   = ''
 
 # Print message with Timestamp
 def printTS(strInput):
@@ -64,8 +67,67 @@ def logOutput(strInput,newLineRep=""):
     if logEnabled == 1:
         logging.info(str(datetime.now().strftime("%Y-%m-%d %H:%M:%S")) + ': ' + str(strInput).replace("\n",newLineRep))
 
-log_file  = "../logs/"+str(datetime.now().strftime("%Y%m%d%H%M%S"))+".log"
-             
+log_file  = dir_home+"logs/"+str(datetime.now().strftime("%Y%m%d%H%M%S"))+".log"
+
+def read_pickle(filename_with_path):
+    download_file(filename_with_path)
+    pk = None
+    if not os.path.isfile(dir_home+filename_with_path):
+        printTS(f'File: {dir_home+filename_with_path} does not exists')
+        return pk
+    with open(dir_home+filename_with_path, 'rb') as f:
+        pk = pickle.load(f)
+    return pk
+#
+# download file from S3
+#             
+def download_file(filename_with_path):
+    if os.path.isfile(dir_home+filename_with_path) and os.path.getsize(dir_home+filename_with_path)>0:
+        printTS(f'File: {(dir_home+filename_with_path)} already locally exists')
+        return
+    else:
+        printTS(f'Downloading {filename_with_path} from S3 Bucket: {bucket} to {os.path.abspath(dir_home+filename_with_path)}')
+        with open(dir_home+filename_with_path,'wb') as fin:
+            s3 = s3fs.S3FileSystem(anon=False)
+            if s3.exists(bucket+filename_with_path):
+                with s3.open(bucket+filename_with_path,'rb') as fout:
+                    fin.write(fout.read())
+                    printTS(f'File {filename_with_path} downloaded from S3 Bucket: {bucket}')
+            else:
+                printTS(f'File {filename_with_path} not exists on S3 Bucket: {bucket+filename_with_path} ')
+
+#
+# upload file to S3
+#             
+def upload_file(filename_with_path):
+    if not os.path.isfile(dir_home+filename_with_path):
+        printTS(f'File: {os.path.abspath(dir_home+filename_with_path)} does not locally exists')
+        return
+    else:
+        printTS(f'Uploading {filename_with_path} to S3 Bucket: {bucket}')
+        with open(dir_home+filename_with_path,'rb') as fout:
+            s3 = s3fs.S3FileSystem(anon=False)
+            if not s3.exists(bucket+filename_with_path):
+                with s3.open(bucket+filename_with_path,'wb') as fin:
+                    fin.write(fout.read())
+                    printTS(f'File {filename_with_path} uploaded to S3 Bucket: {bucket}')
+            else:
+                printTS(f'File {filename_with_path} already exists on S3 Bucket: {bucket} path {filename_with_path}')
+
+#
+# upload file to S3
+#             
+def upload_file_anyway(filename_with_path):
+    if not os.path.isfile(filename_with_path):
+        printTS(f'File: {filename_with_path} does not locally exists')
+        return
+    else:
+        printTS(f'Uploading {filename_with_path} to S3 Bucket: {bucket}')
+        with open(dir_home+filename_with_path,'rb') as fout:
+            s3 = s3fs.S3FileSystem(anon=False)
+            with s3.open(bucket+filename_with_path,'wb') as fin:
+                fin.write(fout.read())
+                printTS(f'File {filename_with_path} uploaded to S3 Bucket: {bucket}')
 
 #
 # Save Dafaframe to CSV on S3 project bucket
@@ -83,19 +145,19 @@ def S3_csv_to_df(filename,dirpath='processed_data'):
 # Get Stop Words
 #
 def get_stop_word_list():
-    return [line.rstrip('\n').lower() for line in open('../config/stopwords.txt', 'r', encoding='utf-8')]
+    return [line.rstrip('\n').lower() for line in open(dir_home+'config/stopwords.txt', 'r', encoding='utf-8')]
     
 #
 # Get Negation Words
 #
 def get_negation_word_list():
-    return [line.rstrip('\n').lower() for line in open('../config/negations.txt', 'r', encoding='utf-8')]
+    return [line.rstrip('\n').lower() for line in open(dir_home+'config/negations.txt', 'r', encoding='utf-8')]
     
 #
 # Get Negation Words
 #
 def get_stop_name_list():
-    return [line.rstrip('\n').lower() for line in open('../config/names.txt', 'r', encoding='utf-8')]
+    return [line.rstrip('\n').lower() for line in open(dir_home+'config/names.txt', 'r', encoding='utf-8')]
 
 # 
 ##### Tokenization
@@ -123,7 +185,7 @@ def remove_newlines(data):
 def remove_urls (data):
     start = time.time()
     data = [re.sub(r'(https|http)?:\/\/(\w|\.|\/|\?|\=|\&|\%)*\b', ' ', str(sent), flags=re.MULTILINE) for sent in data]
-    printTS(f"URLs   removed    - took {time.time() - start:>{9.6}} secs")
+    printTS(f"URLs   removed    - took {time.time() - start:>{10.6}} secs")
     return(data)
     
 #
@@ -132,7 +194,7 @@ def remove_urls (data):
 def remove_spaces (data):
     start = time.time()
     data = [re.sub('\s+', ' '  ,  str(sent)) for sent in data]
-    printTS(f"spaces removed    - took {time.time() - start:>{9.6}} secs")
+    printTS(f"spaces removed    - took {time.time() - start:>{10.6}} secs")
     return data
 
 #
@@ -141,7 +203,7 @@ def remove_spaces (data):
 def remove_short_nots (data):
     start = time.time()
     data = [re.sub("n't", ' not', str(sent)) for sent in data]
-    printTS(f"nots corrected    - took {time.time() - start:>{9.6}} secs")
+    printTS(f"nots corrected    - took {time.time() - start:>{10.6}} secs")
     return data
     
 #
@@ -151,7 +213,7 @@ def split_on_space (data):
     start = time.time()
     data = [sent.split() for sent in data]
     #data = list(tokenize_docs(data))
-    printTS(f"tokenized         - took {time.time() - start:>{9.6}} secs")
+    printTS(f"tokenized         - took {time.time() - start:>{10.6}} secs")
     return data
     
 #
@@ -161,25 +223,26 @@ def remove_stop_words(data):
     start = time.time()
     stops = get_stop_word_list()
     data = [list_diff(sent,stops) for sent in data]
-    printTS(f"Stopwords removed - took {time.time() - start:>{9.6}} secs")
+    printTS(f"Stopwords removed - took {time.time() - start:>{10.6}} secs")
     return data
 
 def list_diff(list1,list2):
     return list(itertools.filterfalse(set(list2).__contains__, list1)) 
     
 
+def tokenizer(x):
+    return ( w for w in str(x).split() if len(w) >3)
+
 def remove_stop_words_fast(data):
     start = time.time()
     stops = get_stop_word_list()
-    printTS(f"Stopwords removed - took {time.time() - start:>{9.6}} secs")
+    printTS(f"Stopwords removed - took {time.time() - start:>{10.6}} secs")
     return [list_diff(sent,stops) for sent in data]
 
 def mongo_data_to_csv(save_on_s3=False):
     
     printTS('Loading mongo data to CSV files')
     try:
-        dir_home    = '../'
-        
         if save_on_s3:
             dir_home    = bucket
             printTS('File will be uploaded to S3 Bucket: '+bucket)    
@@ -242,17 +305,19 @@ def mongo_data_to_csv(save_on_s3=False):
     except Exception as SomeError:
      printTS (f"Loading mongo data to CSV files falied: {str(SomeError)}")
 
-
-    
-if __name__ == "__main__":
+def start_logger():
+    warnings.filterwarnings("ignore")
     try:
         Path(log_file).touch()   
         logging.basicConfig(filename=log_file,level=logging.INFO)
         logEnabled = 1
-        logOutput("------------------START--------------------")            
+        printTS ("------------------START--------------------")            
     except Exception as SomeError:
         printTS (f"Warning: logger initialization falied: {str(SomeError)}")
     
+    
+if __name__ == "__main__":
+    start_logger()
     printTS ("Initializated")
 
 '''        

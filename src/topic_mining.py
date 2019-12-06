@@ -23,6 +23,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 import time
 from operator import itemgetter
 
+
 def tokenizer(x):
     return ( w for w in str(x).split() if len(w) >3)
     
@@ -59,16 +60,13 @@ def get_topic_desc_map():
     return ret
 
 def get_all_term_vec():
-    with open('../pickles/topic_term_vector_all.pk','rb') as f:
-        return pickle.load(f)
+    return read_pickle('pickles/topic_term_vector_all.pk')
 
 def get_pos_term_vec():
-    with open('../pickles/topic_term_vector_pos.pk','rb') as f:
-        return pickle.load(f)
+    return read_pickle('pickles/topic_term_vector_pos.pk')
 
 def get_neg_term_vec():
-    with open('../pickles/topic_term_vector_neg.pk','rb') as f:
-        return pickle.load(f)
+    return read_pickle('pickles/topic_term_vector_neg.pk')
         
 def get_topics_texts(str_text, nmf_all, nmf_pos, nmf_neg, all_topic_map, pos_topic_map, neg_topic_map, topic_desc_map, all_vectors, pos_vectors, neg_vectors, stars=3):
     text = [(u''+str(str_text))]

@@ -1,0 +1,172 @@
+<html>
+    <meta charset="UTF-8">
+    <script src="jquery-2.1.1.min.js"></script>
+    <link rel="stylesheet" href="w3.css">
+	<head>
+		<title>Yummy Opinion Advisor </title>
+	</head>
+    <body>
+        <div id="titdiv" class="w3-container w3-content w3-center w3-padding-64" style="font-size: 50px;">
+            Yummy Opinion Advisor
+        </div>
+		<div id="mainiv" >
+			<div id="topdiv" class="w3-bar w3-black w3-card">
+			    <a href="http://localhost:5000/analyse" class="w3-bar-item w3-button w3-padding-large" style="width: 50%">
+			        Analyse a Yelp Restaurant Review
+			    </a>			    
+				<a href="http://localhost:5000/play" class="w3-bar-item w3-button w3-padding-large" style="width: 50%">
+			        Analyse your own Restaurant Review
+			    </a>			    
+			</div >
+			<div id="contentdiv" class="w3-content">
+			    <br/>
+			    <div id="indiv" class="w3-third">
+			        <div>
+			            <table>
+			                <tr>
+			                    <td>
+            			            <label class="w3-center">State:</label>
+            			            <select id="state" name="state" class="w3-padding-large w3-button">
+            			            {% for state in states %}
+                                        <option value= "{{state}}" SELECTED>{{ value }}</option>"
+                                    {% endfor %}
+                                    </select>                                    
+			                    </td>
+			                    <td style="width: 600px"><p> </p></td>
+			                    <td>
+            			            <label>State:</label>
+            			            <select id="state" name="state" class="w3-padding-large w3-button">
+            			            {% for state in states %}
+                                        <option value= "{{state}}" SELECTED>{{ state }}</option>"
+                                    {% endfor %}
+                                    </select>                                    
+			                    </td>			                    
+			                </tr>
+			            </table>    			                                      
+			        </div>    
+			        <select name= colours method="GET" action="/">
+                    
+			    </div>
+			    <div id="outdiv" class="w3-third">
+			        B
+			    </div>	
+				<form>
+					<select id="system">
+						<option></option>
+					</select>
+					<select id="game"></select>
+					<button type="submit">Play Game</button>
+				</form>
+				<script src="jquery-2.1.1.min.js"></script>
+				<script>
+					"use strict";
+
+					var systems = {{ systems|tojson }};
+
+					var form = $('form');
+					var system = $('select#system');
+					var game = $('select#game');
+
+					for (var key in systems) {
+						system.append($('<option/>', {'value': key, 'text': key}));
+					}
+
+					system.change(function(ev) {
+						game.empty();
+						game.append($('<option/>'));
+
+						var games = systems[system.val()];
+
+						for (var i in games) {
+							game.append($('<option/>', {'value': games[i], 'text': games[i]}));
+						}
+					});
+
+					form.submit(function(ev) {
+						ev.preventDefault();
+						alert("playing " + game.val() + " on " + system.val());
+					});
+				</script>
+			</div>
+		</div>
+	</body>
+</html>
+
+{% extends "main.html" %}
+{% block body %}
+			<div id="contentdiv" class="w3-content">
+			    <br/>
+			    <div id="indiv" class="w3-third">
+			        <div>
+			            <table>
+			                <tr>
+			                    <td>
+            			            <label class="w3-center">State:</label>
+            			            <select id="state" name="state" class="w3-padding-large w3-button">
+            			            {% for state in states %}
+                                        <option value= "{{state}}" SELECTED>{{ value }}</option>"
+                                    {% endfor %}
+                                    </select>                                    
+			                    </td>
+			                    <td style="width: 600px"><p> </p></td>
+			                    <td>
+            			            <label>State:</label>
+            			            <select id="state" name="state" class="w3-padding-large w3-button">
+            			            {% for state in states %}
+                                        <option value= "{{state}}" SELECTED>{{ state }}</option>"
+                                    {% endfor %}
+                                    </select>                                    
+			                    </td>			                    
+			                </tr>
+			            </table>    			                                      
+			        </div>    
+			        <select name= colours method="GET" action="/">
+                    
+			    </div>
+			    <div id="outdiv" class="w3-third">
+			        later
+			    </div>	
+				<form>
+					<select id="system">
+						<option></option>
+					</select>
+					<select id="game"></select>
+					<button type="submit">Play Game</button>
+				</form>
+				<script src="jquery-2.1.1.min.js"></script>
+				<script>
+					"use strict";
+
+					var systems = {{ systems|tojson }};
+
+					var form = $('form');
+					var system = $('select#system');
+					var game = $('select#game');
+
+					for (var key in systems) {
+						system.append($('<option/>', {'value': key, 'text': key}));
+					}
+
+					system.change(function(ev) {
+						game.empty();
+						game.append($('<option/>'));
+
+						var games = systems[system.val()];
+
+						for (var i in games) {
+							game.append($('<option/>', {'value': games[i], 'text': games[i]}));
+						}
+					});
+
+					form.submit(function(ev) {
+						ev.preventDefault();
+						alert("playing " + game.val() + " on " + system.val());
+					});
+				</script>
+			</div>
+		
+		{% endblock %}
+<button class="w3-button w3-black w3-margin-bottom" onclick="document.getElementById('ticketModal').style.display='block'">Buy Tickets</button>
+		https://stackoverflow.com/questions/25978879/how-to-create-chained-selectfield-in-flask-without-refreshing-the-page
+		https://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_templates_band&stacked=h
+		https://gitlab.com/evani3/CS410/blob/master/app.py
