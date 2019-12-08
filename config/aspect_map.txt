@@ -25,6 +25,8 @@ check;value
 cheese;food
 chef;staff
 chicken;food
+cafe;location
+cafeteria;location
 clean;atmosphere
 coffee;food
 cook;staff

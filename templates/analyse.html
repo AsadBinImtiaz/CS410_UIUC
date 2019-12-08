@@ -1,6 +1,6 @@
 {% extends "main.html" %}
 {% block body %}
-			<div id="contentdiv" >
+			<div id="contentdiv" style="margin-right: 15%">
 				<br/>
 				<table>
 					<td style="width:50px"> </td>
@@ -31,13 +31,16 @@
 										<option>{{revw|safe}}</option/>
 									</select>
 									&nbsp;&nbsp;
+									<div style="height: 20px">
+										<br/>
+									</div>
 									<button type="submit" class="w3-button w3-black" value = "submit">Analyze</button>
 									<input type="hidden" placeholder="inpts" id="inpts" name ="inpts" ></input> 
 								</form>
 							</tr>
 						</table>
 						</br>
-						<div style="position:relative; margin-left:100px"><p>{{result|safe}}</p><div>
+						<div id="div_res" style="position:relative"><span>{{result|safe}}</span><div>
 					</td>
 					<td style="width:50px"> </td>
 				</table>
@@ -103,6 +106,7 @@
 					});
 					
 					form.submit(function(ev) {
+					    $('div#div_res span').html('<br/>Cooking  <img src="{{ url_for('static', filename='fidget-white.gif') }}" style="width:36px;">');
 						$(inpts).val($("select#revw option:selected").text()+";"+$("select#rest option:selected").text()+";"+$("select#city option:selected").text()+";"+$("select#state option:selected").text());
 					});
 				</script>

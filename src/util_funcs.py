@@ -70,13 +70,15 @@ def logOutput(strInput,newLineRep=""):
 log_file  = dir_home+"logs/"+str(datetime.now().strftime("%Y%m%d%H%M%S"))+".log"
 
 def read_pickle(filename_with_path):
-    download_file(filename_with_path)
     pk = None
     if not os.path.isfile(dir_home+filename_with_path):
         printTS(f'File: {dir_home+filename_with_path} does not exists')
-        return pk
-    with open(dir_home+filename_with_path, 'rb') as f:
-        pk = pickle.load(f)
+        download_file(filename_with_path)
+    try:
+        with open(dir_home+filename_with_path, 'rb') as f:
+            pk = pickle.load(f)
+    except:
+        pass
     return pk
 #
 # download file from S3
@@ -145,20 +147,44 @@ def S3_csv_to_df(filename,dirpath='processed_data'):
 # Get Stop Words
 #
 def get_stop_word_list():
-    return [line.rstrip('\n').lower() for line in open(dir_home+'config/stopwords.txt', 'r', encoding='utf-8')]
-    
+    try:
+        return [line.rstrip('\n').lower() for line in open(dir_home+'config/stopwords.txt', 'r', encoding='utf-8')]
+    except:
+        download_file('config/stopwords.txt')
+        return [line.rstrip('\n').lower() for line in open(dir_home+'config/stopwords.txt', 'r', encoding='utf-8')]
+        
 #
 # Get Negation Words
 #
 def get_negation_word_list():
-    return [line.rstrip('\n').lower() for line in open(dir_home+'config/negations.txt', 'r', encoding='utf-8')]
+    try:
+        return [line.rstrip('\n').lower() for line in open(dir_home+'config/negations.txt', 'r', encoding='utf-8')]
+    except:
+        download_file('config/negations.txt')
+        return [line.rstrip('\n').lower() for line in open(dir_home+'config/negations.txt', 'r', encoding='utf-8')]
     
 #
 # Get Negation Words
 #
 def get_stop_name_list():
-    return [line.rstrip('\n').lower() for line in open(dir_home+'config/names.txt', 'r', encoding='utf-8')]
+    try:
+        return [line.rstrip('\n').lower() for line in open(dir_home+'config/names.txt', 'r', encoding='utf-8')]
+    except:
+        download_file('config/names.txt')
+        return [line.rstrip('\n').lower() for line in open(dir_home+'config/names.txt', 'r', encoding='utf-8')]
 
+def get_get_config_map(filename_with_path):
+    ret = None
+    try:
+        with open(dir_home+filename_with_path, 'r') as f:
+            ret = {line.split(';')[0]: line.split(';')[1].replace('\n','') for line in f.readlines()}
+    except:
+        download_file(filename_with_path)
+        with open(dir_home+filename_with_path, 'r') as f:
+            ret = {line.split(';')[0]: line.split(';')[1].replace('\n','') for line in f.readlines()}
+        
+    return ret
+    
 # 
 ##### Tokenization
 # 
@@ -166,7 +192,24 @@ def tokenize_docs(sentences):
     for sentence in sentences:
         yield(gensim.utils.simple_preprocess(str(sentence), deacc=True))  # deacc=True re
 
+#
+# Get Topic Map
+#
+def get_all_topics_map():
+    ret = {}
+    with open(dir_home+'config/all_topics.txt', 'r') as f:
+         ret = {line.split(';')[0]: line.split(';')[1].replace('\n','') for line in f.readlines()}
+    return ret
 
+#
+# Get Aspect Map
+#
+def get_aspect_map():
+    return get_get_config_map('config/aspect_map.txt')
+    #with open(dir_home+'config/aspect_map.txt', 'r') as f:
+    #    ret = {line.split(';')[0]: line.split(';')[1].replace('\n','') for line in f.readlines()}
+    #return ret
+    
 #
 # Remove new lies and symbols & lowercase from list of data
 #

@@ -329,6 +329,8 @@ def load_data_from_mongo_db():
     
 def process_text_str(review_text,restaurant_name=''):
     
+    printTS(f"Called: PrepData process_text_str {len(restaurant_name)}")
+    
     data = clean_string([review_text])
     data = make_bigrams_trigrams(data)
     

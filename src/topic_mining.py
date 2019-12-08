@@ -28,36 +28,25 @@ def tokenizer(x):
     return ( w for w in str(x).split() if len(w) >3)
     
 def get_nmf_all():
-    with open('../pickles/all_nmf_model.pk', 'rb') as fin:
-        return pickle.load(fin)
+    return read_pickle('pickles/all_nmf_model.pk')
 
 def get_nmf_pos():
-    with open('../pickles/pos_nmf_model.pk', 'rb') as fin:
-        return pickle.load(fin)
+    return read_pickle('pickles/pos_nmf_model.pk')
 
 def get_nmf_neg():
-    with open('../pickles/neg_nmf_model.pk', 'rb') as fin:
-        return pickle.load(fin)
+    return read_pickle('pickles/neg_nmf_model.pk')
     
 def get_pos_topics_map():
-    with open('../config/pos_topics.txt', 'r') as f:
-        ret = {line.split(';')[0]: line.split(';')[1].replace('\n','') for line in f.readlines()}
-    return ret
-
+    return get_get_config_map('config/pos_topics.txt')
+    
 def get_neg_topics_map():
-    with open('../config/neg_topics.txt', 'r') as f:
-        ret =  {line.split(';')[0]: line.split(';')[1].replace('\n','') for line in f.readlines()}
-    return ret
+    return get_get_config_map('config/neg_topics.txt')
     
 def get_all_topics_map():
-    with open('../config/all_topics.txt', 'r') as f:
-         ret = {line.split(';')[0]: line.split(';')[1].replace('\n','') for line in f.readlines()}
-    return ret
+    return get_get_config_map('config/all_topics.txt')
 
 def get_topic_desc_map():
-    with open('../config/topic_map.txt', 'r') as f:
-        ret = {line.split(';')[0]: line.split(';')[1].replace('\n','') for line in f.readlines()}
-    return ret
+    return get_get_config_map('config/topic_map.txt')
 
 def get_all_term_vec():
     return read_pickle('pickles/topic_term_vector_all.pk')
@@ -86,7 +75,9 @@ def get_topics_texts(str_text, nmf_all, nmf_pos, nmf_neg, all_topic_map, pos_top
     
     return [txt_topic_text,pos_topic_text,neg_topic_text]
         
-def give_topics_to_text(str_text):
+def give_topics_to_text(str_text, stars=3):
+    printTS(f"Called: TopicMiner give_topics_to_text {len(str_text)}")
+    
     nmf_all     = get_nmf_all()
     nmf_pos     = get_nmf_pos()
     nmf_neg     = get_nmf_neg()
@@ -98,8 +89,26 @@ def give_topics_to_text(str_text):
     neg_vec     = get_neg_term_vec()
     all_vec     = get_all_term_vec()
     
-    return get_topics_texts(str_text, nmf_all, nmf_pos, nmf_neg, all_topic_map, pos_topic_map, neg_topic_map, topic_desc_map, all_vec, pos_vec, neg_vec)
+    return get_topics_texts(str_text, nmf_all, nmf_pos, nmf_neg, all_topic_map, pos_topic_map, neg_topic_map, topic_desc_map, all_vec, pos_vec, neg_vec, stars)
     
+def give_clean_topics_to_text(str_text, stars=3):
+    printTS(f"Called: TopicMiner give_clean_topics_to_text {len(str_text)}")
+    
+    str_text = process_text_str(str_text)
+
+    nmf_all     = get_nmf_all()
+    nmf_pos     = get_nmf_pos()
+    nmf_neg     = get_nmf_neg()
+    all_topic_map = get_all_topics_map()
+    pos_topic_map = get_pos_topics_map()
+    neg_topic_map = get_neg_topics_map()
+    topic_desc_map = get_topic_desc_map()    
+    pos_vec     = get_pos_term_vec()
+    neg_vec     = get_neg_term_vec()
+    all_vec     = get_all_term_vec()
+    
+    return get_topics_texts(str_text, nmf_all, nmf_pos, nmf_neg, all_topic_map, pos_topic_map, neg_topic_map, topic_desc_map, all_vec, pos_vec, neg_vec, stars)
+
 if __name__ == "__main__":
     printTS("Initialization started")
     try:

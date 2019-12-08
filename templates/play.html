@@ -1,32 +1,47 @@
 {% extends "main.html" %}
 {% block body %}
-			<div id="contentdiv" >
+			<div id="contentdiv" style="margin-right: 15%">
 				<br/>
 				<table>
 					<td style="width:50px"> </td>
 					<td>
-						<table>
-							<tr>
-								<p>Write a review:</p>
-							</tr>
-							<tr>
-								<form action="http://localhost:5000/play" method = "post">
-									<textarea placeholder="Write a review here" id="inpts" name ="inpts" rows="10" cols="150" class="w3-button" style="border: double; text-align: left;">{{review|safe}}</textarea>
-									<div style="height: 20px">
-										<br/>
-									</div>
-									&nbsp;&nbsp;
-									<button type="submit" class="w3-button w3-black" value = "submit">Analyze</button>
-									&nbsp;&nbsp;
-								</form>
-							</tr>
-						</table>
-						</br>
-						<div style="position:relative; margin-left:100px"><p>{{result|safe}}</p><div>
+					    <div id="innerDiv">
+    						<table id="innerTab">
+    							<tr>
+    								<p>Write a review:</p>
+    							</tr>
+    							<tr>
+    								<form action="http://localhost:5000/play" method = "post">
+    									<textarea placeholder="Write a review here" id="inpts" name ="inpts" rows="10" cols="150" style="border: double; text-align: left; width: 100%">{{review|safe}}</textarea>
+    									<div style="height: 20px">
+    										<br/>
+    									</div>
+    									&nbsp;&nbsp;
+    									<button type="submit" class="w3-button w3-black" value = "submit">Analyze</button>
+    									&nbsp;&nbsp;
+    								</form>
+    							</tr>
+    							<tr></tr>
+    							<tr></tr>
+    						</table>						
+    					</div>
+						<div id="div_res" style="position:relative"><span>{{result|safe}}</span><div>												
 					</td>
 					<td style="width:50px"> </td>
 				</table>
 				<br/>
+				<script src="{{ url_for('static', filename='jquery-2.1.1.min.js') }}"></script>
+				<script>
+					"use strict";
+                    
+                    var form = $('form');
+					
+					form.submit(function(ev) {
+						$('div#div_res span').html('<br/>Baking results  <img src="{{ url_for('static', filename='fidget-white.gif') }}" style="width:36px;">');
+					});
+					
+					
+				</script>    			
 			</div>
 		
 {% endblock %}
