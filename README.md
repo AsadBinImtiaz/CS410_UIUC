@@ -1,7 +1,34 @@
 # Yummy opinion advisor - Yelp restaurant topics and sentiment analysis
 
-## Introduction
-The `Yummy opinion advisor` ...
+## 1. Introduction
+The `Yummy opinion advisor (Yummy NLP)` is the anme of our Project. In this project, we analyse Yelp reviews of **Restaurants** and perform various NLP taks sucsh as **Topic Mining**, **Sentiment Analysis** and **Latent Aspect Rating Analysis**.
+
+This project is contributed by:
+
+- Asad Bin Imtiaz (aimtiaz2@illinois.edu)
+- Karun Veluru (kveluru2@illinois.edu)
+- Ron Swan (rdswan2@illinois.edu)
+
+## 2. Lequired Libraries
+
+To perform NLP on Yelp reviews following python libraries are used:
+
+- Spacy
+- Pandas
+- MongoDB
+- Numpy
+- Gensim
+- SKLearn
+- NLTK
+- Seaborn
+- S3FS
+- pickle
+- RE
+- Time
+- Functools
+- String
+- Math
+
 
 ## Data Preperation
 First the Yelp reviews need to be downloaded. There can be downloaded as a zippped achive from: https://www.yelp.com/dataset/download
