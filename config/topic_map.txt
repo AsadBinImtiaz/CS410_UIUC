@@ -1,7 +1,7 @@
 friendly-staff/good-food/good-service/recommend;Good food & service
 reservation/seat/table/waiter;Reservation & Environment 
 clean/inside/nice/outside;Ambiance
-hotel/night/room/stay;Hotel Stay
+hotel/night/room/stay;Visit/Stay
 chef/fish/sashimi/sushi;Sea Food
 awesome/definitely/highly-recommend/thank;Good dining experience
 absolutely/definitely/delicious/highly-recommend;Tasty food

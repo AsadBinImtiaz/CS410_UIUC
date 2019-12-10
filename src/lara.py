@@ -133,7 +133,7 @@ def give_selected_aspects(df):
         dfd[asp]=str(dfd[asp]).strip().replace('\n','').replace('..','.').replace(';','.').replace('.','.\n')
     
     try:
-        dfd['sentScore'] = get_sentiment_score(dfd['text'])
+        dfd['sentScore'] = get_sentiment_score(process_text_str(dfd['text']))
     except:
         dfd['sentScore'] = 3
         

@@ -64,8 +64,8 @@ def printTS(strInput):
     logOutput(strInput)
     
 def logOutput(strInput,newLineRep=""):
-    if logEnabled == 1:
-        logging.info(str(datetime.now().strftime("%Y-%m-%d %H:%M:%S")) + ': ' + str(strInput).replace("\n",newLineRep))
+    #if logEnabled == 1:
+    logging.info(str(datetime.now().strftime("%Y-%m-%d %H:%M:%S")) + ': ' + str(strInput).replace("\n",newLineRep))
 
 log_file  = dir_home+"logs/"+str(datetime.now().strftime("%Y%m%d%H%M%S"))+".log"
 
@@ -219,7 +219,7 @@ def remove_newlines(data):
     data = [str(sent).replace(';',' . ').replace('\r',' ').replace(':',' . ').replace('/',' / ').replace('"','').replace('$',' dollars ') for sent in data]
     data = [str(sent).replace('~','').replace('(','').replace(')','').replace('+','').replace('#','').replace('-','_').replace('%',' dollars ') for sent in data]
     data = [str(sent).strip('*').strip('-').replace('=',' ').replace('@',' ').replace('^',' ') for sent in data]
-    printTS(f"lower cased       - took {time.time() - start:>{9.6}} secs")
+    printTS(f"lower cased       - took {time.time() - start:9.6f} secs")
     return data
 
 #
@@ -228,7 +228,7 @@ def remove_newlines(data):
 def remove_urls (data):
     start = time.time()
     data = [re.sub(r'(https|http)?:\/\/(\w|\.|\/|\?|\=|\&|\%)*\b', ' ', str(sent), flags=re.MULTILINE) for sent in data]
-    printTS(f"URLs   removed    - took {time.time() - start:>{10.6}} secs")
+    printTS(f"URLs   removed    - took {time.time() - start:9.6f} secs")
     return(data)
     
 #
@@ -237,7 +237,7 @@ def remove_urls (data):
 def remove_spaces (data):
     start = time.time()
     data = [re.sub('\s+', ' '  ,  str(sent)) for sent in data]
-    printTS(f"spaces removed    - took {time.time() - start:>{10.6}} secs")
+    printTS(f"spaces removed    - took {time.time() - start:9.6f} secs")
     return data
 
 #
@@ -246,7 +246,7 @@ def remove_spaces (data):
 def remove_short_nots (data):
     start = time.time()
     data = [re.sub("n't", ' not', str(sent)) for sent in data]
-    printTS(f"nots corrected    - took {time.time() - start:>{10.6}} secs")
+    printTS(f"nots corrected    - took {time.time() - start:9.6f} secs")
     return data
     
 #
@@ -256,7 +256,7 @@ def split_on_space (data):
     start = time.time()
     data = [sent.split() for sent in data]
     #data = list(tokenize_docs(data))
-    printTS(f"tokenized         - took {time.time() - start:>{10.6}} secs")
+    printTS(f"tokenized         - took {time.time() - start:9.6f} secs")
     return data
     
 #
@@ -266,7 +266,7 @@ def remove_stop_words(data):
     start = time.time()
     stops = get_stop_word_list()
     data = [list_diff(sent,stops) for sent in data]
-    printTS(f"Stopwords removed - took {time.time() - start:>{10.6}} secs")
+    printTS(f"Stopwords removed - took {time.time() - start:9.6f} secs")
     return data
 
 def list_diff(list1,list2):
@@ -279,7 +279,7 @@ def tokenizer(x):
 def remove_stop_words_fast(data):
     start = time.time()
     stops = get_stop_word_list()
-    printTS(f"Stopwords removed - took {time.time() - start:>{10.6}} secs")
+    printTS(f"Stopwords removed - took {time.time() - start:9.6f} secs")
     return [list_diff(sent,stops) for sent in data]
 
 def mongo_data_to_csv(save_on_s3=False):

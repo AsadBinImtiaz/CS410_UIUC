@@ -108,6 +108,7 @@ def get_result_body_analyse(str_rev,reviews_df):
         if len(row) == 1:
             res = give_selected_aspects(row)
             topics_List = give_topics_to_text (row['sentiment_text'])
+            print(row['sentiment_text'].head(1))
             if int(res['sentScore']) >3:
                 topics_List[2] = ''
             if int(res['sentScore']) <3:
@@ -121,7 +122,7 @@ def get_result_body_play(str_txt=""):
     if str_txt != "":
         cleansed_text = process_text_str(str_txt)
         topics_List = give_topics_to_text (cleansed_text[1])
-        
+        print(cleansed_text[1])
         printTS(f"Topic Miner Returned: {topics_List}")
         
         res = give_aspects_to_text(str_txt)

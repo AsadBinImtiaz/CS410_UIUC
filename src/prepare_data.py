@@ -192,7 +192,7 @@ def make_bigrams_trigrams(data):
     trigrams = [trigram_mod[bigram_mod[doc]] for doc in data]
     #  Stats
     ## Wall time: 1h 27min 43s
-    printTS(f"Bi/TriGrams made  - took {time.time() - start:>{7.6}} secs")
+    printTS(f"Bi/TriGrams made  - took {time.time() - start:>9.6f} secs")
     
     return [" ".join(trigram).replace(" .",".\n") for trigram in trigrams]
 

@@ -65,4 +65,5 @@ def play():
 
 if __name__ == '__main__':
     start_logger()
+    print("Type: 'http://localhost:5000/' in browser to run 'Yummy Opinion Advisor' webapp")
     app.run()

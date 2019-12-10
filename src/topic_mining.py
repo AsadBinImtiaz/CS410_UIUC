@@ -113,7 +113,7 @@ if __name__ == "__main__":
     printTS("Initialization started")
     try:
         
-        str_t = 'Good food experience. I was with my family. Food was amazing. Service was slow.'
+        str_t = "I kind of like cafe rio a little better. I think it's kind of expensive. $8 for a burrito is meh. Bring me a California burrito from Roberto's. Flavor of my steak burrito was good. But could use more meat. Not my first choice for Mexican food"
         printTS(str_t)
         cleansed_text = process_text_str(str_t)
         
