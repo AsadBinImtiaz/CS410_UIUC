@@ -49,7 +49,7 @@ The data set zipped archive (tar-ball) is approximately 3.7GB, which uncompresse
 
 The dataset needs to be downloaded and imported into a Mongo DB Instance. The data can also be downloaded unzipped from the projects S3 Bucket here: https://cs410-yelp.s3.amazonaws.com/dataset/. The downloaded data must be saved as **.json** files in the dataset directory. Once it is there, it can be loaded by executing `dataimport.bat` or `dataimport.sh.
 
-## 1.3 Data Gathering
+### 1.3 Data Gathering
 First the Yelp reviews need to be downloaded. There can be downloaded as a zippped achive from: https://www.yelp.com/dataset/download
 The data set zipped archive (tar-ball) as around 3.7GB, which uncompresses into around 8GB of Yelp data including Yelp business descriptions, their reviews, the users and tips.
 The data is composed of 6 jason data files. These files should be extracted in the dataset directory. The JSON data files are ignored from Git versining by having an ignore entry in `gitignore` file.
@@ -60,8 +60,7 @@ Once the data is stored in dataset directory, it is needed to be read into an in
 
 The `prepare_data.ipynb` will read the data from mongo DB and combine reviews and businesses data into one csv file in processed_data directory (you may need to install pymongo). The businesses of catory 'Restaurants' will be considered only and all restaurants will be selected which have atleast 50 rewies. The data will be preprocessed with pandas into `processed_data/restaurant_reviews.csv` file (~2.5GB).
 
-
- 
+The preprocessing step takes the raw review text data, removes the stopword and URLs from it, parse and lemmatize all the sentences, combine frequent words appearing together as phrases (bi-grams/tri-grams) and keeps only relavant POS tags which are necassary for an NLP task, such as it Keeps Nouns, Propernouns and Verbs in the text for topic mining, but keeps Adjectives, adverbs and determination in addition for the text for sentiment analysis.
 
 ## Project structure
 huh !!!
