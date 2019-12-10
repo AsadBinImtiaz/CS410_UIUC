@@ -63,13 +63,10 @@ The `prepare_data.ipynb` will read the data from mongo DB and combine reviews an
 The preprocessing step takes the raw review text data, removes the stopword and URLs from it, parse and lemmatize all the sentences, combine frequent words appearing together as phrases (bi-grams/tri-grams) and keeps only relavant POS tags which are necassary for an NLP task, such as it Keeps Nouns, Propernouns and Verbs in the text for topic mining, but keeps Adjectives, adverbs and determination in addition for the text for sentiment analysis.
 
 ## Project structure
-huh !!!
 
-## Some heading
-blah blah
-
-### Some Sub heading
-more blah blah blah
-
-#### More Headings
-even more blah blah blah
+yummy-nlp.ipynb is our aggregated notebook combining the follow efforts: 
+    1. Data Gathering & Cleaning
+    2. Topic Mining
+    3. Sentiment Analysis
+    4. Aspect Analysis 
+    
