@@ -62,11 +62,63 @@ The `prepare_data.ipynb` will read the data from mongo DB and combine reviews an
 
 The preprocessing step takes the raw review text data, removes the stopword and URLs from it, parse and lemmatize all the sentences, combine frequent words appearing together as phrases (bi-grams/tri-grams) and keeps only relavant POS tags which are necassary for an NLP task, such as it Keeps Nouns, Propernouns and Verbs in the text for topic mining, but keeps Adjectives, adverbs and determination in addition for the text for sentiment analysis.
 
-## Project structure
+The `prepare_data.ipynb` will read the data from mongo DB and combine reviews and businesses data into one csv file in processed_data directory (you may need to install pymongo). The businesses of category 'Restaurants' will be considered only and all restaurants will be selected which have atleast 50 reviews. From MongoDB, we select relevant data and write to csv files to be used for next steps
 
-yummy-nlp.ipynb is our aggregated notebook combining the follow efforts: 
-    1. Data Gathering & Cleaning
-    2. Topic Mining
-    3. Sentiment Analysis
-    4. Aspect Analysis 
-    
+The selection criteria is:
+
+Restaurant businesses
+Businesses with 50 or more reviews
+Select only following fields from businesses:
+-   'business_id'
+-   'name'
+-   'city'
+-   'state'
+-   'stars'
+-   'review_count'
+-   'categories'
+
+We select only following fields from reviews:
+-   'review_id'
+-   'user_id'
+-   'business_id'
+-   'stars'
+-   'useful'
+-   'text'
+-   'date'
+
+The data from Restaurants and Reviews is merged in a single file, called `restaurant_reviews.csv`. All qualifying restaurant data is written to `restaurants.csv` file. There files are stored in `procesed_data` diectory.
+
+### 2.1 Tokenization & Parsing
+
+We read preprocessed restaurant and Review files. We remove all restaurant names from reviews. If we do the topic modelling on reviews for a restaurant, the name of the restaurant may appear as frequet topic. This is not ideal, so we will remove it from the review. But some words such as chicken can be in the name and should be retained in the review text. We remove stop words. These stopwords are manually prepared by us for this project. It includes some extra words such as 'restaurant', which we want to avoid for out Topic Modelling and Sentiment analysis. It also excludes words such as 'not' to do a better sentiment analysis. These include words such as not, niether, rarely etc. which change the sense of sentiment and should be considered in phrases are not considered are stop words in our case. All URLs are also removed. 
+
+All frequent groups of words are converetd into BiGrams and TriGrams. The processed data is also stored as CVS files in `procesed_data` directory
+
+## 3. Topic Mining
+
+The `topic_mining.ipynb` we do the topic mining. We consider reviews with score 4 & 5 as positive, reviews with scores 1 & 2 as negative and the reviews with score 3 as neutral. We create three ***Non-Negative Matrix Factorization NMF*** models, one for each positive, one for negative and one for all of the reviews. 
+
+The trained model is dumped in `pickels` directory for later use in webapp.
+
+## 4. Sentiment Analysis
+
+In `sentiment_analysis.ipynb` notebook, we to use the pre-processed text find out the sentiment. We build a **MultiLayer Perceptron** model with 90/10 train test split of cleansed sentiment relavant review text with 15000 words/phrases as features. The model accuracy for positive and negative reviews was 90% while for neutral reviews was 75%.
+
+The trained model is dumped in `pickels` directory for later use in webapp.
+
+## 5. LARA 
+
+In `aspect_word_vector.ipynb` notebook, we will segment out review text to segments and assign an aspect with each segments. We build a word2vector model to to find similarity between differen words. All 6 aspects are splitted in 100 sub aspects for accuracy.
+
+## 6. WebApp
+
+The web App can be lauvhed by running `app.py` script. Once up and running, the app can be opened in browser using http://localhost:5000/ url.
+
+## 7. Project structure
+
+**src** folder contains all webapp source code
+**template** folder contains all html flask templates
+**dataset** folder contains raw dataset downloaded
+**processed_data** folder contains all processed CVS files
+**pickels** contains all pickeld classifiers and models
+**config** folder contains all configuration and mapping files
