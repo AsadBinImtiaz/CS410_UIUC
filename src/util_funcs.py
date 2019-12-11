@@ -39,8 +39,8 @@ import logging
 # 
 
 # S3 Bucket
-access_key_id="AKIAS6LZOC5VADNJTXS7"
-secret_key_id="aNV7W7oWviWop7+HZKr6RCSUVJ7QCyw6wSYxhI9L"
+access_key_id="AKIAS6LZOC5VOE3DTJCU"
+secret_key_id="HMyfJFojkSvalPv3EGWC9tElUWivH1AhQFvWB0Vy"
 bucket_arn_id="cs410-yelp/"
 bucket_region="N. Virginia"
 
